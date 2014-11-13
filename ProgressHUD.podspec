@@ -10,5 +10,5 @@ Pod::Spec.new do |s|
   s.source_files = 'ProgressHUD/ProgressHUD.{h,m}'
   s.resource     = 'ProgressHUD/ProgressHUD.bundle'
   s.requires_arc = true
-  s.dependency   = "MRProgress/ActivityIndicator", "~> 0.8"
+  s.dependency "MRProgress/ActivityIndicator", "~> 0.8"
 end
