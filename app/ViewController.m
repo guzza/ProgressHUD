@@ -34,7 +34,8 @@
 {
 	[super viewDidLoad];
 	self.title = @"Related Code";
-
+    [[ProgressHUD shared] setBackgroundColor:[UIColor whiteColor]];
+    [[ProgressHUD shared] setSpinnerTintColor:[UIColor colorWithRed:1 green:0.565 blue:0 alpha:1]];
 	items = [[NSMutableArray alloc] init];
 	[items addObject:@"Dismiss HUD"];
 	[items addObject:@"No text"];
@@ -118,7 +119,14 @@
 		{
 			case 0: [ProgressHUD dismiss]; break;
 			case 1: [ProgressHUD show:nil]; break;
-			case 2: [ProgressHUD show:@"Please wait..."]; break;
+			case 2:
+                [ProgressHUD show:@"Please wait..." Interaction:NO];
+                double delayInSeconds = 2.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [ProgressHUD dismiss];
+                });
+                break;
 			case 3: [ProgressHUD show:@"Please wait. We need some more time to work out this situation."]; break;
 			case 4: [ProgressHUD showSuccess:@"That was great!"]; break;
 			case 5: [ProgressHUD showSuccess:nil]; break;

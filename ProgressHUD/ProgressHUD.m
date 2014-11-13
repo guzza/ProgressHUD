@@ -13,7 +13,7 @@
 
 @implementation ProgressHUD
 
-@synthesize interaction, window, background, hud, spinner, image, label;
+@synthesize interaction, window, background, hud, spinner, image, label, backgroundColor,labelFont,labelTextColor, spinnerTintColor,cornerRadius;
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 + (ProgressHUD *)shared
@@ -97,6 +97,7 @@
 	background = nil; hud = nil; spinner = nil; image = nil; label = nil;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	self.alpha = 0;
+    self.cornerRadius = 5;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	return self;
 }
@@ -130,8 +131,8 @@
 	{
 		hud = [[UIToolbar alloc] initWithFrame:CGRectZero];
 		hud.translucent = YES;
-		hud.backgroundColor = HUD_BACKGROUND_COLOR;
-		hud.layer.cornerRadius = 10;
+        hud.backgroundColor = (self.backgroundColor != nil)? self.backgroundColor : HUD_BACKGROUND_COLOR;
+		hud.layer.cornerRadius = self.cornerRadius;
 		hud.layer.masksToBounds = YES;
 		[self registerNotifications];
 	}
@@ -151,8 +152,8 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if (spinner == nil)
 	{
-		spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-		spinner.color = HUD_SPINNER_COLOR;
+        spinner =  [[MRActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        spinner.tintColor = (self.spinnerTintColor!= nil)? self.spinnerTintColor : HUD_SPINNER_COLOR;
 		spinner.hidesWhenStopped = YES;
 	}
 	if (spinner.superview == nil) [hud addSubview:spinner];
@@ -166,8 +167,8 @@
 	if (label == nil)
 	{
 		label = [[UILabel alloc] initWithFrame:CGRectZero];
-		label.font = HUD_STATUS_FONT;
-		label.textColor = HUD_STATUS_COLOR;
+        label.font = (self.labelFont !=nil)? self.labelFont : HUD_STATUS_FONT;
+        label.textColor = (self.labelTextColor !=nil)? self.labelTextColor :HUD_STATUS_COLOR;
 		label.backgroundColor = [UIColor clearColor];
 		label.textAlignment = NSTextAlignmentCenter;
 		label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;

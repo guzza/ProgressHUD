@@ -10,7 +10,7 @@
 // THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
-
+#import <MRProgress/MRActivityIndicatorView.h>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 #define HUD_STATUS_FONT			[UIFont boldSystemFontOfSize:16]
 #define HUD_STATUS_COLOR		[UIColor blackColor]
@@ -44,8 +44,12 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UIView *background;
 @property (nonatomic, retain) UIToolbar *hud;
-@property (nonatomic, retain) UIActivityIndicatorView *spinner;
+@property (nonatomic, retain) MRActivityIndicatorView *spinner;
 @property (nonatomic, retain) UIImageView *image;
 @property (nonatomic, retain) UILabel *label;
-
+@property (nonatomic, retain) UIColor *backgroundColor;
+@property (nonatomic ,retain) UIColor *spinnerTintColor;
+@property (nonatomic, retain) UIFont *labelFont;
+@property (nonatomic, retain) UIColor *labelTextColor;
+@property CGFloat cornerRadius;
 @end
