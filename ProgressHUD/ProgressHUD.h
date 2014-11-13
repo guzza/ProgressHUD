@@ -51,5 +51,6 @@
 @property (nonatomic ,retain) UIColor *spinnerTintColor;
 @property (nonatomic, retain) UIFont *labelFont;
 @property (nonatomic, retain) UIColor *labelTextColor;
+@property (nonatomic, retain) UIColor *interactionNoBackgroundColor;
 @property CGFloat cornerRadius;
 @end
